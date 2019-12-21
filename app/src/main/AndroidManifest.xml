@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.todoapp">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/iclauncher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/iclauncher"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".NewListActivity"
+            android:label="Untitled List"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme1"></activity>
+        <activity
+            android:name=".Important"
+            android:label="Important"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme1" />
+        <activity
+            android:name=".MyDayActivity"
+            android:label="My Day"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme1" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
