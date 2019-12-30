@@ -36,7 +36,6 @@ public class Create_Task extends Fragment
        button.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-
                CharSequence input1 = title.getText();
                CharSequence input2 = desc.getText();
                MyDayActivity myDayActivity=(MyDayActivity) getActivity();

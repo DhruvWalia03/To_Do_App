@@ -11,8 +11,8 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/and2"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        android:src="@drawable/and2" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
@@ -40,4 +40,14 @@
         android:layout_alignParentBottom="true"
         android:id="@+id/createTask"
         android:name="com.example.todoapp.blankFragment"/>
+
+
+    <fragment
+        android:id="@+id/updation"
+        android:name="com.example.todoapp.blankFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
+
 </RelativeLayout>

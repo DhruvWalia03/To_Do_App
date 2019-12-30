@@ -19,12 +19,11 @@ public class task_to_be_done {
         return desc;
     }
 
-    public String getDay() {
-        return day;
-    }
-
     public String getDate() {
         return date;
     }
+
+    public String getDay() { return day; }
+
 
 }

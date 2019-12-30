@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".update_fragment"
+    android:background="#FFF7DA">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Do You Want To Delete This Task ?"
+        android:textSize="18dp"
+        android:layout_margin="16dp"
+        android:id="@+id/textView"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DELETE"
+        android:id="@+id/buttonview4"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView"
+        android:layout_margin="16dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_alignLeft="@+id/buttonview4"
+        android:id="@+id/buttonview5"
+        android:layout_marginLeft="-100dp"
+        android:layout_marginTop="16dp"
+        android:text="CANCEL" />
+</RelativeLayout>
