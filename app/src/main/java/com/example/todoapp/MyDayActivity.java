@@ -26,8 +26,7 @@ public class MyDayActivity extends AppCompatActivity implements adapter.OnNoteLi
     RecyclerView recyclerView;
     adapter ad;
     List<task_to_be_done> taskList;
-    private String name, desc, date, day;
-    String p;
+    private String name, desc, date, day, id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,15 +50,15 @@ public class MyDayActivity extends AppCompatActivity implements adapter.OnNoteLi
 
 
         boolean isInserted = mydb.insertData(name, desc, date, day);
-        if (isInserted == true)
+        if (isInserted == true) {
             Toast.makeText(MyDayActivity.this, "Task Inserted", Toast.LENGTH_SHORT).show();
-        else
+            taskList.add(new task_to_be_done(name, desc, date, day));
+            ad = new adapter(taskList, this, this);
+            recyclerView.setAdapter(ad);
+        }
+            else
 
             Toast.makeText(MyDayActivity.this, "Task not Inserted", Toast.LENGTH_SHORT).show();
-
-        taskList.add(new task_to_be_done(name, desc, date, day));
-        ad = new adapter(taskList, this, this);
-        recyclerView.setAdapter(ad);
 
 
         android.app.FragmentManager manager = getFragmentManager();
@@ -91,15 +90,8 @@ public class MyDayActivity extends AppCompatActivity implements adapter.OnNoteLi
     }
 
     public void deleteData1() {
-        recyclerView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                p = String.valueOf(v.getId());
-                Log.i("deleting",p+"");
-            }
-        });
 
-        Integer deletedRows = mydb.deleteData(p);
+        Integer deletedRows = mydb.deleteData(id);
 
         if (deletedRows > 0) {
             Toast.makeText(MyDayActivity.this, "Task Deleted", Toast.LENGTH_SHORT).show();

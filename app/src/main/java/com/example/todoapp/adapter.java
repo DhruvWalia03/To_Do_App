@@ -47,7 +47,7 @@ public class adapter extends RecyclerView.Adapter<adapter.TasksViewHolder> {
 
     class TasksViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView textViewtitle, textViewdesc, textViewdate, textViewday;
+        TextView textViewtitle, textViewdesc, textViewdate, textViewday, textViewId;
         OnNoteListener onNoteListener;
 
         public TasksViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {

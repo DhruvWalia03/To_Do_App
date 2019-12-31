@@ -24,6 +24,7 @@ public class Create_Task extends Fragment
 {
     private EditText desc , title;
     private Button button;
+    Integer id =0;
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,6 +40,7 @@ public class Create_Task extends Fragment
                CharSequence input1 = title.getText();
                CharSequence input2 = desc.getText();
                MyDayActivity myDayActivity=(MyDayActivity) getActivity();
+               id++;
                myDayActivity.fragment1(input1.toString() ,input2.toString() , "21 Jan" ,"Sat");
                }
        });
