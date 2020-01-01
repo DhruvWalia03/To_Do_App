@@ -16,6 +16,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COL_3= "TIME";
     public static final String COL_4= "DATE";
     public static final String COL_5= "DAY";
+    Integer id;
 
     public DataBaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -32,18 +33,19 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertData (String name, String time, String date, String day){
+    public Integer insertData (String name, String time, String date, String day){
         SQLiteDatabase db =this.getWritableDatabase();
         ContentValues contentValues= new ContentValues();
         contentValues.put(COL_2 , name);
         contentValues.put(COL_3 , time);
         contentValues.put(COL_4 , date);
         contentValues.put(COL_5 , day);
+        id = (Integer) contentValues.get(COL_1);
         long result =db.insert(TABLE_NAME, null, contentValues);
         if (result== -1)
-            return false;
+            return id;
         else
-            return true;
+            return -1;
     }
 
     public Cursor getAllData() {

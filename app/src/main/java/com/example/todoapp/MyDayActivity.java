@@ -26,7 +26,9 @@ public class MyDayActivity extends AppCompatActivity implements adapter.OnNoteLi
     RecyclerView recyclerView;
     adapter ad;
     List<task_to_be_done> taskList;
-    private String name, desc, date, day, id;
+    private String name, desc, date, day;
+    Integer id;
+    task_to_be_done task;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +51,10 @@ public class MyDayActivity extends AppCompatActivity implements adapter.OnNoteLi
         day = s4;
 
 
-        boolean isInserted = mydb.insertData(name, desc, date, day);
-        if (isInserted == true) {
+        Integer isInserted = mydb.insertData(name, desc, date, day);
+        if (isInserted != -1) {
             Toast.makeText(MyDayActivity.this, "Task Inserted", Toast.LENGTH_SHORT).show();
-            taskList.add(new task_to_be_done(name, desc, date, day));
+            taskList.add(new task_to_be_done(String.valueOf(isInserted) , name, desc, date, day));
             ad = new adapter(taskList, this, this);
             recyclerView.setAdapter(ad);
         }
@@ -91,7 +93,7 @@ public class MyDayActivity extends AppCompatActivity implements adapter.OnNoteLi
 
     public void deleteData1() {
 
-        Integer deletedRows = mydb.deleteData(id);
+        Integer deletedRows = mydb.deleteData(String.valueOf(id));
 
         if (deletedRows > 0) {
             Toast.makeText(MyDayActivity.this, "Task Deleted", Toast.LENGTH_SHORT).show();
@@ -126,7 +128,7 @@ public class MyDayActivity extends AppCompatActivity implements adapter.OnNoteLi
         if (res.getCount() == 0)
             return;
         while (res.moveToNext()) {
-            taskList.add(new task_to_be_done(res.getString(1), res.getString(2), res.getString(3), res.getString(4)));
+            taskList.add(new task_to_be_done(res.getString(0), res.getString(1), res.getString(2), res.getString(3), res.getString(4)));
             ad = new adapter(taskList, this, this);
             recyclerView.setAdapter(ad);
 
