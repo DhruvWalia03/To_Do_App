@@ -36,7 +36,8 @@ public class update_fragment extends Fragment
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyDayActivity myDayActivity=(MyDayActivity) getActivity();
+                MyDayActivity myDayActivity;
+                myDayActivity = (MyDayActivity) getActivity();
                 myDayActivity.deleteData1();
             }
         });

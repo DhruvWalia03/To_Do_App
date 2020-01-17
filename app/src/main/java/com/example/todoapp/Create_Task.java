@@ -39,7 +39,7 @@ public class Create_Task extends Fragment
                CharSequence input1 = title.getText();
                CharSequence input2 = desc.getText();
                MyDayActivity myDayActivity=(MyDayActivity) getActivity();
-               myDayActivity.fragment1(input1.toString() ,input2.toString() , "21 Jan" ,"Sat");
+               myDayActivity.fragment1(input1.toString() ,input2.toString() , "12 Jan" ,"Sunday");
                }
        });
 

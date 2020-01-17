@@ -33,19 +33,18 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public Integer insertData (String name, String time, String date, String day){
+    public Boolean insertData (String name, String time, String date, String day){
         SQLiteDatabase db =this.getWritableDatabase();
         ContentValues contentValues= new ContentValues();
         contentValues.put(COL_2 , name);
         contentValues.put(COL_3 , time);
         contentValues.put(COL_4 , date);
         contentValues.put(COL_5 , day);
-        id = (Integer) contentValues.get(COL_1);
         long result =db.insert(TABLE_NAME, null, contentValues);
         if (result== -1)
-            return id;
+            return false;
         else
-            return -1;
+            return true;
     }
 
     public Cursor getAllData() {
@@ -54,9 +53,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
-    public Integer deleteData(String id)
+    public Integer deleteData(String name)
     {
         SQLiteDatabase db =this.getWritableDatabase();
-        return db.delete(TABLE_NAME, "SERIAL_NO= ?", new String[]{id});
+        return db.delete(TABLE_NAME, "NAME_OF_TASK=?", new String[]{name});
     }
 }

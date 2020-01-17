@@ -2,7 +2,9 @@ package com.example.todoapp;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.database.Cursor;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,8 +29,8 @@ public class MyDayActivity extends AppCompatActivity implements adapter.OnNoteLi
     adapter ad;
     List<task_to_be_done> taskList;
     private String name, desc, date, day;
-    Integer id;
-    task_to_be_done task;
+    String id ;
+    Cursor cursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +42,6 @@ public class MyDayActivity extends AppCompatActivity implements adapter.OnNoteLi
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        showData();
     }
 
     public void fragment1(String s1, String s2, String s3, String s4) {
@@ -51,10 +51,10 @@ public class MyDayActivity extends AppCompatActivity implements adapter.OnNoteLi
         day = s4;
 
 
-        Integer isInserted = mydb.insertData(name, desc, date, day);
-        if (isInserted != -1) {
+        Boolean isInserted = mydb.insertData(name, desc, date, day);
+        if (isInserted == true) {
             Toast.makeText(MyDayActivity.this, "Task Inserted", Toast.LENGTH_SHORT).show();
-            taskList.add(new task_to_be_done(String.valueOf(isInserted) , name, desc, date, day));
+            taskList.add(new task_to_be_done(name, desc, date, day));
             ad = new adapter(taskList, this, this);
             recyclerView.setAdapter(ad);
         }
@@ -83,7 +83,7 @@ public class MyDayActivity extends AppCompatActivity implements adapter.OnNoteLi
     }
 
     @Override
-    public void onNoteClick(int position) {
+    public void onNoteClick(int position,String id) {
         Fragment fragment = new update_fragment();
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
@@ -92,9 +92,7 @@ public class MyDayActivity extends AppCompatActivity implements adapter.OnNoteLi
     }
 
     public void deleteData1() {
-
-        Integer deletedRows = mydb.deleteData(String.valueOf(id));
-
+        Integer deletedRows = mydb.deleteData(id);
         if (deletedRows > 0) {
             Toast.makeText(MyDayActivity.this, "Task Deleted", Toast.LENGTH_SHORT).show();
             taskList = new ArrayList<>();
@@ -128,10 +126,12 @@ public class MyDayActivity extends AppCompatActivity implements adapter.OnNoteLi
         if (res.getCount() == 0)
             return;
         while (res.moveToNext()) {
-            taskList.add(new task_to_be_done(res.getString(0), res.getString(1), res.getString(2), res.getString(3), res.getString(4)));
+            taskList.add(new task_to_be_done(res.getString(1), res.getString(2), res.getString(3), res.getString(4)));
             ad = new adapter(taskList, this, this);
             recyclerView.setAdapter(ad);
-
         }
     }
+
+    public void onSignedOut(){ taskList.clear(); }
+    public void onSignedIn(){ showData(); }
 }
