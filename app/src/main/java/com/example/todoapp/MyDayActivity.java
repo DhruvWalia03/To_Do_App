@@ -1,25 +1,39 @@
 package com.example.todoapp;
 
+import android.app.AlarmManager;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.nfc.Tag;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationCompatExtras;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Fragment;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+
+import static androidx.core.content.ContextCompat.getSystemService;
 
 public class MyDayActivity extends AppCompatActivity implements adapter.OnNoteListener {
 
@@ -30,7 +44,8 @@ public class MyDayActivity extends AppCompatActivity implements adapter.OnNoteLi
     List<task_to_be_done> taskList;
     private String name, desc, date, day;
     String id ;
-    Cursor cursor;
+    Notification notification;
+    private NotificationManagerCompat notificationManagerCompat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,18 +65,18 @@ public class MyDayActivity extends AppCompatActivity implements adapter.OnNoteLi
         date = s3;
         day = s4;
 
-
-        Boolean isInserted = mydb.insertData(name, desc, date, day);
-        if (isInserted == true) {
-            Toast.makeText(MyDayActivity.this, "Task Inserted", Toast.LENGTH_SHORT).show();
-            taskList.add(new task_to_be_done(name, desc, date, day));
-            ad = new adapter(taskList, this, this);
-            recyclerView.setAdapter(ad);
+        if (name.isEmpty() && desc.isEmpty()) {
+            Toast.makeText(MyDayActivity.this, " Not A Valid Task ", Toast.LENGTH_SHORT).show();
+        } else {
+            Boolean isInserted = mydb.insertData(name, desc, date, day);
+            if (isInserted) {
+                Toast.makeText(MyDayActivity.this, "Task Inserted", Toast.LENGTH_SHORT).show();
+                taskList.add(new task_to_be_done(name, desc, date, day));
+                ad = new adapter(taskList, this, this);
+                recyclerView.setAdapter(ad);
+            } else
+                Toast.makeText(MyDayActivity.this, "Task not Inserted", Toast.LENGTH_SHORT).show();
         }
-            else
-
-            Toast.makeText(MyDayActivity.this, "Task not Inserted", Toast.LENGTH_SHORT).show();
-
 
         android.app.FragmentManager manager = getFragmentManager();
         Fragment fragment = manager.findFragmentById(R.id.createTask);
@@ -134,4 +149,5 @@ public class MyDayActivity extends AppCompatActivity implements adapter.OnNoteLi
 
     public void onSignedOut(){ taskList.clear(); }
     public void onSignedIn(){ showData(); }
+
 }

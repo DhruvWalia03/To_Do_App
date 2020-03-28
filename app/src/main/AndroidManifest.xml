@@ -13,7 +13,7 @@
             android:name=".NewListActivity"
             android:label="Untitled List"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme1"></activity>
+            android:theme="@style/AppTheme1"/>
         <activity
             android:name=".Important"
             android:label="Important"
@@ -31,6 +31,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
+        </application>
 
 </manifest>

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="#FFF7DA"
     android:orientation="vertical">
 
@@ -12,24 +12,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Enter Name Of The Task (Title)"
+        android:text="Enter Title"
         android:textColor="@android:color/black" />
 
-    <EditText
-        android:id="@+id/title1"
-        android:layout_width="match_parent"
+    <TimePicker
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="Enter Time For Reminder"
-        android:textColor="@android:color/black" />
+        android:layout_margin="8dp"
+        android:id="@+id/time_picker"
+        />
 
     <Button
         android:id="@+id/buttonview3"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_margin="8dp"
         android:text="DONE"
+        android:textAlignment="center"
         android:textColor="@android:color/black" />
-
 
 </LinearLayout>

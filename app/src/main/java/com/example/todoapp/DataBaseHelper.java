@@ -16,7 +16,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COL_3= "TIME";
     public static final String COL_4= "DATE";
     public static final String COL_5= "DAY";
-    Integer id;
 
     public DataBaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -46,7 +45,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         else
             return true;
     }
-
     public Cursor getAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res =db.rawQuery("select * from "+TABLE_NAME,null);

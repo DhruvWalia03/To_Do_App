@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     public static final int RC_SIGN_IN=1;
-    public MyDayActivity myDayActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
