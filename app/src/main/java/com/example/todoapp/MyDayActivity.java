@@ -84,13 +84,14 @@ public class MyDayActivity extends AppCompatActivity implements adapter.OnNoteLi
     private void startAlarm(Calendar calendar) {
         AlarmManager alarmManager=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlertReciever.class);
+        intent.putExtra("Title",name);
+        intent.putExtra("Time",time);
+        intent.putExtra("Date",date);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
 
         if (calendar.before(Calendar.getInstance())) {
             calendar.add(Calendar.DATE, 1);
         }
-            channel channel= new channel(this);
-            channel.getTitleOfTask(name,date,time);
 
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
     }
