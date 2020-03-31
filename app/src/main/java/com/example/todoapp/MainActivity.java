@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     public static final int RC_SIGN_IN=1;
+    String username1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +42,12 @@ public class MainActivity extends AppCompatActivity {
                 {
                     //user is signed in
                     Toast.makeText(MainActivity.this, "Already Signed In. Welcome!", Toast.LENGTH_SHORT).show();
-                    //onSignedInInitialize(user.getDisplayName());
+                    onSignedInInitialize(user.getDisplayName());
                 }
                 else
                 {
                     //user is signed out
-                    //onSignedOutInitialize();
+                    onSignedOutInitialize();
                     startActivityForResult(AuthUI.getInstance()
                             .createSignInIntentBuilder()
                             .setIsSmartLockEnabled(false)
@@ -142,13 +143,13 @@ public class MainActivity extends AppCompatActivity {
         if(authStateListener != null)
         firebaseAuth.removeAuthStateListener(authStateListener);
     }
-/*
+
     public void onSignedInInitialize(String username)
     {
-        myDayActivity.onSignedIn();
+        username1 = username;
     }
     public void onSignedOutInitialize()
     {
-        myDayActivity.onSignedOut();
-    }*/
+
+    }
 }

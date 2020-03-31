@@ -25,6 +25,7 @@ public class Create_Task extends Fragment
     private EditText title;
     TimePicker timePicker;
     private Button button;
+    Calendar c;
     private String date , day,hours,mins;
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -35,35 +36,46 @@ public class Create_Task extends Fragment
        title =view.findViewById(R.id.nameoftask1);
        timePicker =view.findViewById(R.id.time_picker);
        button=view.findViewById(R.id.buttonview3);
-       Calendar calendar = Calendar.getInstance();
-       SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d , ''yy", Locale.ENGLISH);
-       SimpleDateFormat dayFormat = new SimpleDateFormat("EEE", Locale.ENGLISH);
-       date = dateFormat.format(calendar.getTime());
-       day = dayFormat.format(calendar.getTime());
-       hours=String.valueOf(timePicker.getCurrentHour());
-       mins=String.valueOf(timePicker.getCurrentMinute());
-       button.setOnClickListener(new View.OnClickListener() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            timePicker.setHour(0);
+            timePicker.setMinute(0);
+        }
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d , ''yy", Locale.ENGLISH);
+        SimpleDateFormat dayFormat = new SimpleDateFormat("EEE", Locale.ENGLISH);
+        date = dateFormat.format(calendar.getTime());
+        day = dayFormat.format(calendar.getTime());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+                @Override
+                public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+                    hours=String.valueOf(hourOfDay);
+                    mins=String.valueOf(minute);
+                }
+            });
+        }
+        button.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
                CharSequence input1 = title.getText();
+               c=onTimeSet(Integer.parseInt(hours),Integer.parseInt(mins));
                MyDayActivity myDayActivity=(MyDayActivity) getActivity();
-               myDayActivity.fragment1(input1.toString() ,hours+":"+mins , date ,day);
-
-               }
+               if(Integer.parseInt(mins)<10)
+                   mins="0"+mins;
+               if(Integer.parseInt(hours)<10)
+                   hours="0"+hours;
+               myDayActivity.fragment1(input1.toString() ,hours+":"+mins , date ,day,c);
+           }
        });
 
        return view;
     }
 
-    /*@RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    @Override
-    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+    public Calendar onTimeSet(int hourOfDay, int minute) {
         Calendar c = Calendar.getInstance();
         c.set(Calendar.HOUR_OF_DAY, hourOfDay);
         c.set(Calendar.MINUTE, minute);
         c.set(Calendar.SECOND, 0);
-
-        MyDayActivity myDayActivity1 = new MyDayActivity();
-        myDayActivity1.startAlarm(c);
-    }*/
+        return c;
+    }
 }

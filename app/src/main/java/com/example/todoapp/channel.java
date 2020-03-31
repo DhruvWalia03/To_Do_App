@@ -1,5 +1,6 @@
-/* package com.example.todoapp;
+package com.example.todoapp;
 
+import android.annotation.TargetApi;
 import android.app.Application;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -8,30 +9,50 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.os.Build;
 
+import androidx.annotation.RequiresApi;
+import androidx.core.app.NotificationCompat;
+
 import java.nio.channels.Channel;
 
 public class channel extends ContextWrapper {
     public static final String Channel_id_1="channel1";
-    public static final String Channel_id_2="channel2";
+    private NotificationManager manager;
+    String name,date,time;
 
     public channel(Context context) {
         super(context);
-        notificationCreator();
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+            notificationCreator();
     }
 
 
+    @TargetApi(Build.VERSION_CODES.O)
     private void notificationCreator() {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             NotificationChannel channel1=new NotificationChannel(Channel_id_1, "Channel 1", NotificationManager.IMPORTANCE_HIGH);
-            NotificationChannel channel2= new NotificationChannel(Channel_id_2,"CHannel 2",NotificationManager.IMPORTANCE_LOW);
             channel1.setDescription(" This is for Important Notifications ");
-            channel2.setDescription(" This is for Normal Notification ");
 
-            NotificationManager manager= getSystemService(NotificationManager.class);
-            assert manager != null;
-            manager.createNotificationChannel(channel1);
-            manager.createNotificationChannel(channel2); 
+            getManager().createNotificationChannel(channel1);
         }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public NotificationManager getManager() {
+        if(manager == null)
+            manager=getSystemService(NotificationManager.class);
+        return manager;
+    }
+
+    /*public void getTitleOfTask(String name,String date, String time)
+    {
+        this.name=name;
+        this.date=date;
+        this.time=time;
+    }*/
+
+    public NotificationCompat.Builder getChannelNotification() {
+        return new NotificationCompat.Builder(getApplicationContext(), Channel_id_1)
+                .setContentTitle("Task")
+                .setContentText("Complete the work")
+                .setPriority(NotificationManager.IMPORTANCE_HIGH)
+                .setSmallIcon(R.mipmap.iclauncher);
     }
 }
-*/

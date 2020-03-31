@@ -4,45 +4,34 @@ import android.app.AlarmManager;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.nfc.Tag;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationCompatExtras;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Fragment;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import static androidx.core.content.ContextCompat.getSystemService;
-
 public class MyDayActivity extends AppCompatActivity implements adapter.OnNoteListener {
 
     DataBaseHelper mydb;
-    private Create_Task fragment;
     RecyclerView recyclerView;
     adapter ad;
     List<task_to_be_done> taskList;
-    private String name, desc, date, day;
+    private String name, time, date, day;
     String id ;
     Notification notification;
     private NotificationManagerCompat notificationManagerCompat;
@@ -54,28 +43,32 @@ public class MyDayActivity extends AppCompatActivity implements adapter.OnNoteLi
         mydb = new DataBaseHelper(this);
 
         taskList = new ArrayList<>();
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        recyclerView =  findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        onSignedIn();
     }
 
-    public void fragment1(String s1, String s2, String s3, String s4) {
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public void fragment1(String s1, String s2, String s3, String s4, Calendar calendar) {
         name = s1;
-        desc = s2;
+        time = s2;
         date = s3;
         day = s4;
 
-        if (name.isEmpty() && desc.isEmpty()) {
+        if (name.isEmpty()) {
             Toast.makeText(MyDayActivity.this, " Not A Valid Task ", Toast.LENGTH_SHORT).show();
         } else {
-            Boolean isInserted = mydb.insertData(name, desc, date, day);
+            Boolean isInserted = mydb.insertData(name, time, date, day);
             if (isInserted) {
-                Toast.makeText(MyDayActivity.this, "Task Inserted", Toast.LENGTH_SHORT).show();
-                taskList.add(new task_to_be_done(name, desc, date, day));
+                Toast.makeText(MyDayActivity.this, " Task Inserted ", Toast.LENGTH_SHORT).show();
+                taskList.add(new task_to_be_done(name, time, date, day));
                 ad = new adapter(taskList, this, this);
                 recyclerView.setAdapter(ad);
+                startAlarm(calendar);
+
             } else
-                Toast.makeText(MyDayActivity.this, "Task not Inserted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MyDayActivity.this,  " Task not Inserted ", Toast.LENGTH_SHORT).show();
         }
 
         android.app.FragmentManager manager = getFragmentManager();
@@ -86,6 +79,22 @@ public class MyDayActivity extends AppCompatActivity implements adapter.OnNoteLi
             fragmentTransaction.commit();
         }
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    private void startAlarm(Calendar calendar) {
+        AlarmManager alarmManager=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, AlertReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+
+        if (calendar.before(Calendar.getInstance())) {
+            calendar.add(Calendar.DATE, 1);
+        }
+            //channel channel= new channel(this);
+            //channel.getTitleOfTask(name,date,time);
+
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+    }
+
 
     public void createFragment(View view) {
         Fragment fragment = new blankFragment();
@@ -98,7 +107,8 @@ public class MyDayActivity extends AppCompatActivity implements adapter.OnNoteLi
     }
 
     @Override
-    public void onNoteClick(int position,String id) {
+    public void onNoteClick(int position , String name) {
+        this.id=name;
         Fragment fragment = new update_fragment();
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
@@ -110,11 +120,9 @@ public class MyDayActivity extends AppCompatActivity implements adapter.OnNoteLi
         Integer deletedRows = mydb.deleteData(id);
         if (deletedRows > 0) {
             Toast.makeText(MyDayActivity.this, "Task Deleted", Toast.LENGTH_SHORT).show();
-            taskList = new ArrayList<>();
-            recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-            recyclerView.setHasFixedSize(true);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            taskList.clear();
             showData();
+            cancelAlarm();
         }
         android.app.FragmentManager manager = getFragmentManager();
         Fragment fragment = manager.findFragmentById(R.id.updation);
@@ -138,8 +146,6 @@ public class MyDayActivity extends AppCompatActivity implements adapter.OnNoteLi
 
     public void showData() {
         Cursor res = mydb.getAllData();
-        if (res.getCount() == 0)
-            return;
         while (res.moveToNext()) {
             taskList.add(new task_to_be_done(res.getString(1), res.getString(2), res.getString(3), res.getString(4)));
             ad = new adapter(taskList, this, this);
@@ -147,7 +153,13 @@ public class MyDayActivity extends AppCompatActivity implements adapter.OnNoteLi
         }
     }
 
-    public void onSignedOut(){ taskList.clear(); }
     public void onSignedIn(){ showData(); }
+    private void cancelAlarm() {
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, AlertReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+
+        alarmManager.cancel(pendingIntent);
+    }
 
 }

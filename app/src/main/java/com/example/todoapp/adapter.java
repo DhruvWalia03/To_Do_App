@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class adapter extends RecyclerView.Adapter<adapter.TasksViewHolder> {
     private List<task_to_be_done> tasklist;
     private Context mCtx;
     private OnNoteListener monNoteListener;
+    String name;
 
     public adapter(List<task_to_be_done> tasklist, Context mCtx, OnNoteListener onNoteListener) {
         this.tasklist = tasklist;
@@ -35,7 +37,8 @@ public class adapter extends RecyclerView.Adapter<adapter.TasksViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull final TasksViewHolder holder, int position) {
         final task_to_be_done i1 = tasklist.get(position);
-        holder.textViewtitle.setText(i1.getName());
+        name=i1.getName();
+        holder.textViewtitle.setText(name);
         holder.textViewdesc.setText(i1.getDesc());
         holder.textViewdate.setText(i1.getDate());
         holder.textViewday.setText(i1.getDay());
@@ -55,7 +58,7 @@ public class adapter extends RecyclerView.Adapter<adapter.TasksViewHolder> {
         public TasksViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {
             super(itemView);
 
-            relativeLayout= itemView.findViewById(R.id.recyclerview);
+            relativeLayout = itemView.findViewById(R.id.recyclerview);
             textViewtitle = itemView.findViewById(R.id.nameoftask);
             textViewdate = itemView.findViewById(R.id.date);
             textViewdesc = itemView.findViewById(R.id.description);
@@ -67,12 +70,11 @@ public class adapter extends RecyclerView.Adapter<adapter.TasksViewHolder> {
 
         @Override
         public void onClick(View v) {
-            onNoteListener.onNoteClick(getAdapterPosition(), String.valueOf(textViewtitle));
+            onNoteListener.onNoteClick(getAdapterPosition(), name);
         }
     }
 
     public interface OnNoteListener {
-        void onNoteClick(int position,String id);
+        void onNoteClick(int position, String name);
     }
 }
-
