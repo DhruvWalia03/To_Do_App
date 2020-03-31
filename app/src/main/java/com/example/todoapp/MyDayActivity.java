@@ -83,14 +83,14 @@ public class MyDayActivity extends AppCompatActivity implements adapter.OnNoteLi
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void startAlarm(Calendar calendar) {
         AlarmManager alarmManager=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(this, AlertReceiver.class);
+        Intent intent = new Intent(this, AlertReciever.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
 
         if (calendar.before(Calendar.getInstance())) {
             calendar.add(Calendar.DATE, 1);
         }
-            //channel channel= new channel(this);
-            //channel.getTitleOfTask(name,date,time);
+            channel channel= new channel(this);
+            channel.getTitleOfTask(name,date,time);
 
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
     }
@@ -156,7 +156,7 @@ public class MyDayActivity extends AppCompatActivity implements adapter.OnNoteLi
     public void onSignedIn(){ showData(); }
     private void cancelAlarm() {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(this, AlertReceiver.class);
+        Intent intent = new Intent(this, AlertReciever.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
 
         alarmManager.cancel(pendingIntent);
