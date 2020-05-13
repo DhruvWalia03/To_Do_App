@@ -29,16 +29,21 @@ public class Create_Task extends Fragment
     private String date , day,hours,mins;
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
        View view= inflater.inflate(R.layout.fragment_create__task , container,false);
        title =view.findViewById(R.id.nameoftask1);
        timePicker =view.findViewById(R.id.time_picker);
        button=view.findViewById(R.id.buttonview3);
+       Calendar calendar1= Calendar.getInstance();
+        int h = calendar1.get(Calendar.HOUR_OF_DAY);
+        int m = calendar1.get(Calendar.MINUTE);
+        hours= String.valueOf(h);
+        mins= String.valueOf(m);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            timePicker.setHour(0);
-            timePicker.setMinute(0);
+            timePicker.setHour(h);
+            timePicker.setMinute(m);
         }
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d , ''yy", Locale.ENGLISH);

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Important">
+    tools:context=".Important"
+    android:id="@+id/relativeLayout1">
 
     <ImageView
         android:layout_width="match_parent"
@@ -13,8 +13,15 @@
         android:src="@drawable/and1"
         android:scaleType="centerCrop"/>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:id="@+id/recyclerview_1"/>
+
+
     <Button
-        android:id="@+id/buttonview2"
+        android:id="@+id/buttonview7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -24,6 +31,21 @@
         android:textStyle="bold"
         android:textColor="@android:color/black"
         android:layout_margin="16dp"
+        android:onClick="openFragment"
         android:background="@android:color/holo_blue_dark"/>
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/create_imp"
+        android:name="com.example.todoapp.blankFragment" />
+
+    <fragment
+        android:id="@+id/updation1"
+        android:name="com.example.todoapp.blankFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
 
 </RelativeLayout>

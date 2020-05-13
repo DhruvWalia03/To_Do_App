@@ -109,7 +109,7 @@ public class MyDayActivity extends AppCompatActivity implements adapter.OnNoteLi
 
     @Override
     public void onNoteClick(int position , String name) {
-        this.id=name;
+            this.id=name;
         Fragment fragment = new update_fragment();
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();

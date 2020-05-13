@@ -11,8 +11,12 @@
         android:layout_height="wrap_content"
         android:text="Do You Want To Delete This Task ?"
         android:textSize="18dp"
-        android:layout_margin="16dp"
-        android:id="@+id/textView"/>
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:id="@+id/textView"
+        android:padding="16dp"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -21,7 +25,8 @@
         android:id="@+id/buttonview4"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/textView"
-        android:layout_margin="16dp"/>
+        android:layout_margin="16dp"
+        android:padding="8dp"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -31,5 +36,6 @@
         android:id="@+id/buttonview5"
         android:layout_marginLeft="-100dp"
         android:layout_marginTop="16dp"
-        android:text="CANCEL" />
+        android:text="CANCEL"
+        android:padding="8dp"/>
 </RelativeLayout>
