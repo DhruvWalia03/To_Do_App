@@ -32,12 +32,12 @@ public class Create_imp extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_create_imp, container, false);
+        View root = inflater.inflate(R.layout.fragment_create_imp, container, false);
 
-        button.findViewById(R.id.buttonview6);
-        datePicker.findViewById(R.id.datepicker);
-        timePicker.findViewById(R.id.time__picker);
-        text.findViewById(R.id.nameoftask2);
+        button = root.findViewById(R.id.buttonview6);
+        datePicker = root.findViewById(R.id.datepicker);
+        timePicker = root.findViewById(R.id.time__picker);
+        text = root.findViewById(R.id.nameoftask2);
         Calendar calendar1= Calendar.getInstance();
         int h = calendar1.get(Calendar.HOUR_OF_DAY);
         int m = calendar1.get(Calendar.MINUTE);
@@ -94,7 +94,7 @@ public class Create_imp extends Fragment {
             }
         });
 
-        return view;
+        return root;
     }
 
     public Calendar onTimeSet(int hourOfDay, int minute) {
