@@ -10,13 +10,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
-public class adapter extends RecyclerView.Adapter<adapter.TasksViewHolder> {
-    private final List<task_to_be_done1> tasklist;
+public class adapter2 extends RecyclerView.Adapter<adapter2.TasksViewHolder2> {
+    private final List<task_to_be_done> tasklist;
     private final Context mCtx;
     private final OnNoteListener monNoteListener;
     String name;
 
-    public adapter(List<task_to_be_done1> tasklist, Context mCtx, OnNoteListener onNoteListener) {
+    public adapter2(List<task_to_be_done> tasklist, Context mCtx, OnNoteListener onNoteListener) {
         this.tasklist = tasklist;
         this.mCtx = mCtx;
         this.monNoteListener = onNoteListener;
@@ -24,15 +24,15 @@ public class adapter extends RecyclerView.Adapter<adapter.TasksViewHolder> {
 
     @NonNull
     @Override
-    public TasksViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public TasksViewHolder2 onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mCtx);
-        View view = inflater.inflate(R.layout.task_to_be_done1, null);
-        return new TasksViewHolder(view, monNoteListener);
+        View view = inflater.inflate(R.layout.task_to_be_done, null);
+        return new TasksViewHolder2(view, monNoteListener);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final TasksViewHolder holder, int position) {
-        final task_to_be_done1 i1 = tasklist.get(position);
+    public void onBindViewHolder(@NonNull TasksViewHolder2 holder, int position) {
+        final task_to_be_done i1 = tasklist.get(position);
         name=i1.getName();
         holder.textViewtitle.setText(name);
         holder.textViewdesc.setText(i1.getDesc());
@@ -45,7 +45,7 @@ public class adapter extends RecyclerView.Adapter<adapter.TasksViewHolder> {
         return tasklist.size();
     }
 
-    public class TasksViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class TasksViewHolder2 extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView textViewtitle;
         TextView textViewdesc;
@@ -54,7 +54,7 @@ public class adapter extends RecyclerView.Adapter<adapter.TasksViewHolder> {
         OnNoteListener onNoteListener;
         RelativeLayout relativeLayout;
 
-        public TasksViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {
+        public TasksViewHolder2(@NonNull View itemView, OnNoteListener onNoteListener) {
             super(itemView);
 
             relativeLayout = itemView.findViewById(R.id.recyclerview);

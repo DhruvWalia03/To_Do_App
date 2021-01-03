@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#FFF7DA">
+    android:background="@drawable/bottom_sheet">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <EditText
         android:id="@+id/nameoftask2"
@@ -13,27 +18,27 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginRight="8dp"
+        android:textSize="20sp"
         android:hint="Enter Title for the Task"
         android:textColor="@android:color/black" />
 
     <DatePicker
         android:layout_width="wrap_content"
-        android:layout_height="250dp"
+        android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:headerBackground="@android:color/holo_blue_dark"
-        android:id="@+id/datepicker" />
+        android:id="@+id/datepicker"
+        android:layout_gravity="center"
+        />
 
     <TimePicker
-        android:layout_width="wrap_content"
-        android:layout_height="250dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:id="@+id/time__picker"
-        android:headerBackground="@android:color/holo_blue_dark"/>
-
+        android:id="@+id/time__picker"/>
 
     <Button
         android:id="@+id/buttonview6"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
@@ -41,7 +46,8 @@
         android:background="@android:color/holo_blue_dark"
         android:text="DONE"
         android:textAlignment="center"
-        android:textColor="@android:color/black" />
-
+        android:textColor="@android:color/black"
+        android:gravity="center" />
 
 </LinearLayout>
+</ScrollView>

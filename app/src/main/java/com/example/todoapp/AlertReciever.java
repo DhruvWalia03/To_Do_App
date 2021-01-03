@@ -10,10 +10,9 @@ import androidx.core.app.NotificationCompat;
 
 public class AlertReciever extends BroadcastReceiver {
     String n,t,d;
-    @RequiresApi(api = Build.VERSION_CODES.M)
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onReceive(Context context, Intent intent) {
-
         n=intent.getStringExtra("Title");
         t=intent.getStringExtra("Time");
         d=intent.getStringExtra("Date");

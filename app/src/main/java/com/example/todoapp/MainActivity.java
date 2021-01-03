@@ -2,7 +2,6 @@ package com.example.todoapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,21 +10,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.util.ArrayList;
 import java.util.Arrays;
-
-import static android.app.PendingIntent.getActivity;
 
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     public static final int RC_SIGN_IN=1;
+    int i=0;
     String username1;
 
     @Override
@@ -41,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
                 if(user!= null)
                 {
                     //user is signed in
-                    Toast.makeText(MainActivity.this, "Already Signed In. Welcome!", Toast.LENGTH_SHORT).show();
+                    if(i==0)
+                       Toast.makeText(MainActivity.this, "Already Signed In. Welcome!", Toast.LENGTH_SHORT).show();
                     onSignedInInitialize(user.getDisplayName());
                 }
                 else
@@ -107,13 +103,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-        switch (item.getItemId()){
-            case R.id.sign_out_menu:
-                AuthUI.getInstance().signOut(this);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.sign_out_menu) {
+            AuthUI.getInstance().signOut(this);
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
 

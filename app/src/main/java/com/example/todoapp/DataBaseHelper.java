@@ -5,11 +5,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import androidx.annotation.Nullable;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME= "Tasks.db";
+    public static final String DATABASE_NAME= "Tasks_.db";
     public static final String TABLE_NAME= "TASKS";
     public static final String COL_1= "SERIAL_NO";
     public static final String COL_2= "NAME_OF_TASK";
@@ -40,15 +39,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL_4 , date);
         contentValues.put(COL_5 , day);
         long result =db.insert(TABLE_NAME, null, contentValues);
-        if (result== -1)
-            return false;
-        else
-            return true;
+        return result != -1;
     }
     public Cursor getAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res =db.rawQuery("select * from "+TABLE_NAME,null);
-        return res;
+        return db.rawQuery("select * from "+TABLE_NAME,null);
     }
 
     public Integer deleteData(String id)

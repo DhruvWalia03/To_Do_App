@@ -27,7 +27,6 @@ public class channel extends ContextWrapper {
     private void notificationCreator() {
             NotificationChannel channel1=new NotificationChannel(Channel_id_1, "Channel 1", NotificationManager.IMPORTANCE_HIGH);
             channel1.setDescription(" This is for Important Notifications ");
-
             getManager().createNotificationChannel(channel1);
         }
 
@@ -44,6 +43,7 @@ public class channel extends ContextWrapper {
         this.time = time;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public NotificationCompat.Builder getChannelNotification() {
         return new NotificationCompat.Builder(getApplicationContext(), Channel_id_1)
                 .setContentTitle(name)

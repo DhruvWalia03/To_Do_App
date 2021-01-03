@@ -30,16 +30,8 @@
         android:textStyle="bold"
         android:textColor="@android:color/black"
         android:layout_margin="16dp"
-        android:background="#FF1493"
+        android:background="@color/colorAcent"
         android:onClick="createFragment"/>
-
-    <fragment
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/createTask"
-        android:name="com.example.todoapp.blankFragment"/>
-
 
     <fragment
         android:id="@+id/updation"

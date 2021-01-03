@@ -23,15 +23,14 @@ import androidx.annotation.RequiresApi;
 
 public class update_fragment extends Fragment
 {
-    private Button button1, button2;
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
         View view= inflater.inflate(R.layout.fragment_update_fragment , container,false);
-        button1=view.findViewById(R.id.buttonview4);
-        button2=view.findViewById(R.id.buttonview5);
+        Button button1 = view.findViewById(R.id.buttonview4);
+        Button button2 = view.findViewById(R.id.buttonview5);
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override

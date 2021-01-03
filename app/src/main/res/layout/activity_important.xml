@@ -29,17 +29,10 @@
         android:text="+"
         android:textSize="24dp"
         android:textStyle="bold"
-        android:textColor="@android:color/black"
-        android:layout_margin="16dp"
+        android:textColor="@android:color/white"
+        android:layout_margin="10dp"
         android:onClick="openFragment"
         android:background="@android:color/holo_blue_dark"/>
-
-    <fragment
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/create_imp"
-        android:name="com.example.todoapp.blankFragment" />
 
     <fragment
         android:id="@+id/updation1"
