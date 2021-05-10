@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.todoapp.Create_Task;
+import com.example.todoapp.Create_imp;
 import com.example.todoapp.Important;
 import com.example.todoapp.Model.task_to_be_done1;
 import com.example.todoapp.MyDayActivity;
@@ -64,9 +65,9 @@ public class adapter2 extends RecyclerView.Adapter<adapter2.TasksViewHolder> {
         bundle.putString("id", String.valueOf(item.getId()));
         bundle.putString("name",item.getName());
         bundle.putString("time",item.getTime());
-        Create_Task fragment = new Create_Task();
+        Create_imp fragment = new Create_imp();
         fragment.setArguments(bundle);
-        fragment.show(activity.getSupportFragmentManager(), MyDayActivity.TAG);
+        fragment.show(activity.getSupportFragmentManager(), Important.TAG);
     }
 
     public void deleteItem(int posn)

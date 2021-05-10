@@ -96,7 +96,7 @@ public class Create_Task extends BottomSheetDialogFragment
         date = dateFormat.format(calendar.getTime());
         SimpleDateFormat dayFormat = new SimpleDateFormat("EEE", Locale.ENGLISH);
         day = dayFormat.format(calendar.getTime());
-        if(day.equals("THU"))
+        if(day.equals("Thu"))
             day+="RS";
 
 
@@ -117,8 +117,8 @@ public class Create_Task extends BottomSheetDialogFragment
     }
 
     private void setTimePickerUpdate(String h_ours, String m_in) {
-        hours= String.valueOf(h_ours);
-        mins= String.valueOf(m_in);
+        hours= (h_ours);
+        mins= (m_in);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             timePicker.setHour(Integer.parseInt(h_ours));
             timePicker.setMinute(Integer.parseInt(m_in));

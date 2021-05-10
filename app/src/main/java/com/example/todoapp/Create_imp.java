@@ -65,6 +65,14 @@ public class Create_imp extends BottomSheetDialogFragment {
         }
         else setTimePickerInsert();
 
+        Calendar calendar1 = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d , ''yy", Locale.ENGLISH);
+        date = dateFormat.format(calendar1.getTime());
+        SimpleDateFormat dayFormat = new SimpleDateFormat("EEE", Locale.ENGLISH);
+        day = dayFormat.format(calendar1.getTime());
+        if(day.equals("Thu"))
+            day+="RS";
+
         text.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -100,25 +108,19 @@ public class Create_imp extends BottomSheetDialogFragment {
         });
 
         datePicker.setOnDateChangedListener((view, year, monthOfYear, dayOfMonth) -> {
-            monthOfYear++;
             Calendar calendar= Calendar.getInstance();
             calendar.set(Calendar.YEAR,year);
             calendar.set(Calendar.MONTH,monthOfYear);
             calendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
 
-            SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d , ''yy", Locale.ENGLISH);
-            SimpleDateFormat dayFormat = new SimpleDateFormat("EEE", Locale.ENGLISH);
-            date = dateFormat.format(calendar.getTime());
-            day = dayFormat.format(calendar.getTime());
+            SimpleDateFormat dateFormat1 = new SimpleDateFormat("MMM d , ''yy", Locale.ENGLISH);
+            SimpleDateFormat dayFormat1 = new SimpleDateFormat("EEE", Locale.ENGLISH);
+            date = dateFormat1.format(calendar.getTime());
+            day = dayFormat1.format(calendar.getTime());
+            if(day.equals("Thu"))
+                day+="RS";
         });
 
-        Calendar calendar1 = Calendar.getInstance();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d , ''yy", Locale.ENGLISH);
-        SimpleDateFormat dayFormat = new SimpleDateFormat("EEE", Locale.ENGLISH);
-        date = dateFormat.format(calendar1.getTime());
-        day = dayFormat.format(calendar1.getTime());
-        if(day.equals("THU"))
-            day+="RS";
 
         button.setOnClickListener(v -> {
             String input = text.getText().toString();
@@ -139,6 +141,10 @@ public class Create_imp extends BottomSheetDialogFragment {
 
     private void setTimePickerUpdate(String h_o, String m_i) {
         Calendar calendar1= Calendar.getInstance();
+        hours = (h_o);
+        mins = m_i;
+        h = Integer.parseInt(h_o);
+        m = Integer.parseInt(m_i);
         y = calendar1.get(Calendar.YEAR);
         mo = calendar1.get(Calendar.MONTH);
         dom = calendar1.get(Calendar.DAY_OF_MONTH);

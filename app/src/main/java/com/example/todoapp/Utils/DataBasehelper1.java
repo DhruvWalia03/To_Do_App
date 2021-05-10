@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataBasehelper1 extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME= "Imp_Tasks.db";
+    public static final String DATABASE_NAME= "ImpTasks.db";
     public static final String TABLE_NAME= "IMPTASKS";
     public static final String COL_1= "SERIAL_NO";
     public static final String COL_2= "NAME_OF_TASK";
@@ -90,6 +90,6 @@ public class DataBasehelper1 extends SQLiteOpenHelper {
     public Integer deleteData(String id)
     {
         SQLiteDatabase db =this.getWritableDatabase();
-        return db.delete(TABLE_NAME, "NAME_OF_TASK=?", new String[]{id});
+        return db.delete(TABLE_NAME,COL_1 +"=?",new String[]{id});
     }
 }
