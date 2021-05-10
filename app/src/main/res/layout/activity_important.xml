@@ -1,44 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Important"
-    android:id="@+id/relativeLayout1">
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/and1"
-        android:scaleType="centerCrop"/>
+    android:id="@+id/relativeLayout1"
+    android:background="@drawable/and1">
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:id="@+id/recyclerview_1"/>
+        android:nestedScrollingEnabled="true"
+        android:id="@+id/recyclerview"/>
 
-
-    <Button
-        android:id="@+id/buttonview7"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+        android:id="@+id/addtaskbtn"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:text="+"
-        android:textSize="24dp"
-        android:textStyle="bold"
-        android:textColor="@android:color/white"
-        android:layout_margin="10dp"
-        android:onClick="openFragment"
-        android:background="@android:color/holo_blue_dark"/>
-
-    <fragment
-        android:id="@+id/updation1"
-        android:name="com.example.todoapp.blankFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true" />
+        android:layout_margin="24dp"
+        android:src="@drawable/addtask"
+        app:elevation="6dp"
+        android:backgroundTint="#483915" />
 
 </RelativeLayout>

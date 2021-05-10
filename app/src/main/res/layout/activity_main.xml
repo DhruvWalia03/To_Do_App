@@ -1,72 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity"
-    android:background="#FFF7DA"
-    >
+    android:background="@drawable/mainscreen">
 
-    <TextView
-        android:id="@+id/activity"
+    <Button
+        android:id="@+id/mydayactivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_margin="16dp"
         android:text="MY DAY"
-        android:textColor="@android:color/black"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/activity1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/activity"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:text="IMPORTANT"
-        android:textColor="@android:color/black"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/activity2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="60dp"
-        android:layout_marginBottom="20dp"
-        android:text="NEW LIST"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
+        android:background="@drawable/button"
+        android:textColor="@android:color/white"
         android:textSize="24sp"
-        android:gravity="center_horizontal" />
+        android:textStyle="bold"
+        android:onClick="openMyDay"/>
 
-    <ImageView
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="20dp"
-        android:src="@drawable/ic_add_group_24dp" />
+    <Button
+        android:id="@+id/impactivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="IMPORTANT"
+        android:layout_margin="16dp"
+        android:background="@drawable/button"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:onClick="openImp"/>
 
-    <ImageView
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:src="@drawable/ic_playlist_add_24dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="20dp"/>
-
-
-</RelativeLayout>
+</LinearLayout>

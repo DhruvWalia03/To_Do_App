@@ -11,12 +11,13 @@
         android:layout_margin="10dp"
         android:id="@+id/cardView"
         app:cardCornerRadius="10dp"
-        app:cardBackgroundColor="@color/colorAccent">
+        app:cardElevation="6dp"
+        app:cardBackgroundColor="#6b541a">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:padding="10dp"
         android:id="@+id/recyclerview">
 
         <TextView
@@ -26,11 +27,10 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:padding="8dp"
             android:text="Name Of Task"
             android:textColor="@android:color/white"
-            android:textSize="24sp"
-            android:gravity="center" />
+            android:textSize="16sp"
+            android:gravity="center"/>
 
         <TextView
             android:id="@+id/description"
@@ -41,10 +41,9 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
-            android:padding="8dp"
             android:text="Reminder"
             android:textColor="@android:color/white"
-            android:textSize="18sp" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/date"
@@ -53,12 +52,11 @@
             android:layout_below="@id/nameoftask"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="68dp"
+            android:layout_marginEnd="70dp"
             android:layout_marginBottom="4dp"
-            android:padding="8dp"
             android:text=" Date "
             android:textColor="@android:color/white"
-            android:textSize="18sp" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/day"
@@ -69,10 +67,9 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="4dp"
-            android:padding="8dp"
             android:text=" Day "
             android:textColor="@android:color/white"
-            android:textSize="18sp" />
+            android:textSize="12sp" />
 
 
     </RelativeLayout>

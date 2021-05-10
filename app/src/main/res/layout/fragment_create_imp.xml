@@ -15,39 +15,41 @@
         android:id="@+id/nameoftask2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
-        android:textSize="20sp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="6dp"
+        android:textSize="16sp"
         android:hint="Enter Title for the Task"
         android:textColor="@android:color/black" />
 
     <DatePicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
         android:id="@+id/datepicker"
+        android:layout_margin="6dp"
         android:layout_gravity="center"
+        android:headerBackground="@color/btncolor"
+
         />
 
     <TimePicker
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:id="@+id/time__picker"/>
+        android:layout_margin="6dp"
+        android:id="@+id/time__picker"
+        android:timePickerMode="spinner"/>
 
     <Button
         android:id="@+id/buttonview6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@android:color/holo_blue_dark"
+        android:layout_margin="6dp"
+        android:background="@drawable/buttoninfragment"
         android:text="DONE"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:gravity="center" />
+        android:gravity="center"
+        android:textSize="20sp"
+        android:elevation="6dp"
+        android:textColor="@android:color/darker_gray" />
 
 </LinearLayout>
 </ScrollView>

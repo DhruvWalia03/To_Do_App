@@ -9,11 +9,14 @@
         android:roundIcon="@mipmap/iclauncher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".NewListActivity"
-            android:label="Untitled List"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme1"/>
+        <activity android:name=".SplashScreen"
+            android:theme="@style/SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".Important"
             android:label="Important"
@@ -31,7 +34,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".AlertReciever"/>
-        </application>
+
+        <receiver android:name=".AlertReciever" />
+    </application>
 
 </manifest>

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">@android:color/holo_blue_dark</color>
-    <color name="colorAcent">#F660AB</color>
+    <color name="colorPrimary">#5fc7e0</color>
+    <color name="colorPrimaryDark">#008aa3</color>
+    <color name="colorAccent">#3aa8c1</color>
+    <color name="colorAcent">#483915</color>
+    <color name="bckgrndcolor">#e2f0f5</color>
+    <color name="btncolor">#6b541a</color>
 </resources>
